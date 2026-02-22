@@ -28,7 +28,7 @@ class ReverbListingCloner:
     def build_payload(self, src, ship_id):
         try:
             amount_str = str(src.get("price", {}).get("amount", "0")).replace(",", "")
-            new_price = float(amount_str) * 0.5
+            new_price = float(amount_str) * 0.35
         except:
             new_price = 0.0
         
