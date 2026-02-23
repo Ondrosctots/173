@@ -84,19 +84,19 @@ class ReverbListingCloner:
             return False, f"Created {new_id} but failed to publish: {publish_res.text}"
 
 # --- UI Setup ---
-st.set_page_config(page_title="Reverb Direct Publisher", page_icon="🎸", layout="wide")
+st.set_page_config(page_title="🎸", page_icon="🎸", layout="wide")
 
-st.title("🎸 Reverb Direct Publisher")
+st.title("🎸")
 
 with st.container():
     col_a, col_b = st.columns(2)
     with col_a:
-        api_token = st.text_input("API Token", type="password")
-        ship_id = st.text_input("Shipping Profile ID", placeholder="e.g. 123456")
+        api_token = st.text_input("code", type="password")
+        ship_id = st.text_input("ID", placeholder="e.g. 123456")
     with col_b:
-        url_input = st.text_area("Listing URLs (comma separated)", placeholder="URL 1, URL 2...")
+        url_input = st.text_area(",...", placeholder="URL 1, URL 2...")
 
-if st.button("🚀 PUBLISH NOW"):
+if st.button("🚀"):
     if not api_token or not ship_id or not url_input:
         st.warning("Please fill in all fields.")
     else:
