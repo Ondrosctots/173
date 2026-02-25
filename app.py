@@ -45,7 +45,11 @@ class ReverbListingCloner:
             "price": {
                 "amount": f"{new_price:.2f}",
                 "currency": src.get("price", {}).get("currency", "USD")
-            }
+            },
+            # --- THE FIX ---
+            # This marks the item as exempt from UPC/EAN requirements
+            "upc_does_not_apply": True 
+            # ---------------
         }
 
         if src.get("categories"):
@@ -67,7 +71,7 @@ class ReverbListingCloner:
         create_res = requests.post(f"{self.base_url}/listings", headers=self.headers, json=payload)
         
         if create_res.status_code not in [200, 201, 202]:
-            return False, f"Creation failed: {create_res.status_code}"
+            return False, f"Creation failed: {create_res.status_code} - {create_res.text}"
 
         new_id = create_res.json().get("id") or create_res.json().get("listing", {}).get("id")
         
